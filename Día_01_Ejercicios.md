@@ -1,6 +1,6 @@
 ---
 
-## 14. Ejercicios de dificultad creciente
+## 9. Ejercicios de dificultad creciente
 
 1. **Básico:** Asigna el nombre `Tipo_IVA` a la celda `E1` (que contiene el valor `0,21`) y calcula el IVA del importe ubicado en `B2` usando ese nombre dentro de la fórmula.
 2. **Intermedio:** Aplica un formato personalizado a la columna de teléfonos de forma que los números de 9 dígitos se muestren automáticamente formateados con el estilo `(###) ##-##-##`.
@@ -8,7 +8,7 @@
 
 ---
 
-## 15. Práctica guiada paso a paso
+## 10. Práctica guiada paso a paso
 
 ### Objetivo: Crear un listado con avisos automáticos de impago
 
@@ -24,7 +24,7 @@
 
 ---
 
-## 16. Reto profesional
+## 11. Reto profesional
 
 Trabajas en el departamento de Recursos Humanos de una empresa de servicios. Te entregan una hoja con 300 empleados. Debes aplicar un formato condicional a cada fila completa para que:
 
@@ -33,7 +33,7 @@ Trabajas en el departamento de Recursos Humanos de una empresa de servicios. Te 
 
 ---
 
-## 17. Proyecto integrador
+## 12. Proyecto integrador
 
 **Mini-proyecto: Plantilla de Control de Presupuesto Mensual**
 Crea una plantilla interactiva que incluya:
@@ -44,7 +44,7 @@ Crea una plantilla interactiva que incluya:
 
 ---
 
-## 18. Autoevaluación
+## 13. Autoevaluación
 
 ### Respuesta corta
 
