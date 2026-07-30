@@ -183,11 +183,7 @@ Regla de negocio sobre el peso (`B2`):
 Fórmula aplicada en la celda `D2`:
 `=SI.CONJUNTO(B2>10; 15; B2>=3; 8; VERDADERO; 3)`
 
----
-
-## 6. Diagramas
-
-### Flujo de decisión de la función `SI.CONJUNTO`
+#### Flujo de decisión de la función `SI.CONJUNTO`
 
 ```mermaid
 %%{init: {'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 20, 'rankSpacing': 20}}}%%
@@ -205,13 +201,7 @@ flowchart TD
 
 ---
 
-## 8. Tablas comparativas
-
-
-
----
-
-## 9. Buenas prácticas
+## 6. Buenas prácticas
 
 1. **Mantener la separación lógica mediante sangrías temporales:** Cuando construya fórmulas extensas, utilice `ALT + INTRO` en la barra de fórmulas para dividir visualmente la condición y sus argumentos en varias líneas.
 2. **Utilizar celdas de apoyo limpiezas intermedias:** Si una cadena de texto requiere transformaciones complejas (limpieza de espacios, cambios a mayúsculas y extracciones), es preferible hacer la limpieza en una columna auxiliar antes de ejecutar cálculos sobre los datos.
@@ -219,29 +209,18 @@ flowchart TD
 
 ---
 
-## 10. Errores habituales
+## 7. Errores habituales
 
-```
-+------------------+----------------------------------+------------------------------------+
-| Error devuelto   | Causa habitual                   | Solución recomendada               |
-+------------------+----------------------------------+------------------------------------+
-| #¡VALOR!         | Intento de realizar operaciones  | Revisar si la celda contiene       |
-|                  | matemáticas sobre textos libres  | espacios extra con ESPACIOS o      |
-|                  | o números grabados como texto.   | convertir texto a valor numérico.  |
-+------------------+----------------------------------+------------------------------------+
-| #¿NOMBRE?        | Nombre de la función mal escrito | Verificar la ortografía de la      |
-|                  | o comillas faltantes en un texto | función o asegurarse de cerrar     |
-|                  | dentro de la fórmula.            | los textos con comillas dobles.    |
-+------------------+----------------------------------+------------------------------------+
-| #N/A             | En SI.CONJUNTO, ninguna prueba   | Añadir la condición predeterminada |
-|                  | lógica ha resultado ser cierta.  | VERDADERO como última prueba.      |
-+------------------+----------------------------------+------------------------------------+
+| Error devuelto | Causa habitual                                                                 | Solución recomendada                                              |
+|----------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| #¡VALOR!       | Intento de realizar operaciones matemáticas sobre textos libres o números grabados como texto. | Revisar si la celda contiene espacios extra (ESPACIOS) o convertir texto a número. |
+| #¿NOMBRE?      | Nombre de la función mal escrito o comillas faltantes en un texto dentro de la fórmula. | Verificar la ortografía de la función o asegurarse de cerrar los textos con comillas dobles. |
+| #N/A           | En SI.CONJUNTO, ninguna prueba lógica ha resultado ser cierta.                  | Añadir la condición predeterminada VERDADERO como última prueba.   |
 
-```
 
 ---
 
-## 11. Resumen
+## 8. Resumen
 
 * Las funciones lógicas dirigen el flujo de evaluación de datos en la hoja de cálculo.
 * `SI` administra evaluaciones binarias (*Verdadero* / *Falso*); mientras que `SI.CONJUNTO` permite encadenar múltiples reglas ordenadas de manera clara.
@@ -252,7 +231,7 @@ flowchart TD
 
 ---
 
-## 12. Glosario de términos
+## 9. Glosario de términos
 
 * **Argumento:** Cada uno de los datos, referencias o condiciones que se introducen dentro de los paréntesis de una función para que esta pueda ejecutarse.
 * **Anidamiento:** Práctica que consiste en introducir una función dentro de los argumentos de otra función diferente para resolver un cálculo en cadena.
@@ -262,7 +241,7 @@ flowchart TD
 
 ---
 
-## 13. Ejercicios progresivos
+## 10. Ejercicios progresivos
 
 ### Ejercicio 1 (Dificultad Básica)
 
@@ -286,7 +265,7 @@ Escriba una fórmula única que extraiga el año (`"2026"`) ubicado en la posici
 
 ---
 
-## 14. Práctica guiada: Depuración asistida por IA
+## 11. Práctica guiada: Depuración asistida por IA
 
 ### Escenario de Trabajo
 
@@ -321,24 +300,18 @@ El asistente devolverá una fórmula corregida similar a esta:
 
 ---
 
-## 15. Reto profesional
+## 12. Reto profesional
 
 ### Contexto Empresarial
 
 Usted trabaja en el departamento de Recursos Humanos de una cadena de supermercados. Recibe una tabla exportada del reloj fichador de los empleados con las lecturas de los turnos nocturnos.
 
-```
-+---+----------------------------+------------------+
-|   |             A              |        B         |
-+---+----------------------------+------------------+
-| 1 | Empleado                   | Horas Totales    |
-+---+----------------------------+------------------+
-| 2 |  GARCIA LOPEZ, MARIA       | 42               |
-+---+----------------------------+------------------+
-| 3 |  MARTINEZ CANO, JOSE       | 38               |
-+---+----------------------------+------------------+
+|   | A                          | B               |
+|---|-----------------------------|-----------------|
+| 1 | Empleado                   | Horas Totales   |
+| 2 | GARCIA LOPEZ, MARIA        | 42              |
+| 3 | MARTINEZ CANO, JOSE        | 38              |
 
-```
 
 ### Instrucciones del Reto
 
@@ -355,7 +328,7 @@ Diseñe la columna `C` (Nombre Formateado) y la columna `D` (Cálculo de Complem
 
 ---
 
-## 16. Proyecto integrador: Generador Automático de Fichas de Producto
+## 13. Proyecto integrador: Generador Automático de Fichas de Producto
 
 ### Objetivo general
 
@@ -377,7 +350,7 @@ Construir una plantilla dinámica en Excel que procese las entradas de un formul
 
 ---
 
-## 17. Autoevaluación
+## 14. Autoevaluación
 
 ### Preguntas de respuesta corta
 
@@ -431,7 +404,7 @@ Construir una plantilla dinámica en Excel que procese las entradas de un formul
 
 ---
 
-## 18. Recursos adicionales
+## 15. Recursos adicionales
 
 ### Documentación oficial
 
