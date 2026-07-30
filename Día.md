@@ -25,25 +25,9 @@ Adicionalmente, la incorporación de asistentes virtuales como **ChatGPT** o **C
 
 Antes de comenzar la construcción de fórmulas complejas, es fundamental recordar tres conceptos operativos básicos:
 
-```
-+------------------+-------------------------------------------------------------+
-| Concepto         | Descripción y Regla de Aplicación                           |
-+------------------+-------------------------------------------------------------+
-| Sintaxis         | Estructura fija de una fórmula: Nombre de la función,       |
-|                  | apertura de paréntesis, argumentos separados por punto y     |
-|                  | coma (;), y cierre de paréntesis.                           |
-|                  | Ejemplo: =SUMA(A1:A5)                                       |
-+------------------+-------------------------------------------------------------+
-| Operadores de    | Símbolos para comparar dos valores:                         |
-| Comparación      | Igual (=), Mayor que (>), Menor que (<),                    |
-|                  | Mayor o igual (>=), Menor o igual (<=), Distinto (<>).      |
-+------------------+-------------------------------------------------------------+
-| Delimitación de  | Todo texto plano dentro de una fórmula debe escribirse      |
-| Texto            | estrictamente entre comillas dobles ("Texto"). Los números y |
-|                  | las referencias a celdas se escriben sin comillas.          |
-+------------------+-------------------------------------------------------------+
-
-```
+- **Sintaxis de una fórmula:** Es la estructura fija de una fórmula `nombre_de_la_función(argumento1[; argumento2] [;...])`. Ejemplo: `=SUMA(A1:A5)`
+- **Operadores de Comparación:** Símbolos para comparar dos valores:Igual `=`, Mayor que `>`, Menor que `<`,Mayor o igual `>=`, Menor o igual `<=`, Distinto `<>`.
+- **Delimitación de Texto:** Todo texto plano dentro de una fórmula debe escribirse estrictamente entre comillas dobles `"Texto"`. Los números y las referencias a celdas se escriben sin comillas.      
 
 ---
 
@@ -55,8 +39,8 @@ Antes de comenzar la construcción de fórmulas complejas, es fundamental record
 
 Evalúa si una condición lógica es verdadera o falsa y devuelve un resultado diferente para cada uno de los dos casos.
 
-* **Sintaxis oficial:** `=SI(prueba_logica; valor_si_verdadero; [valor_si_falso])`
-* **Procedimiento:**
+**Sintaxis oficial:** `=SI(prueba_logica; valor_si_verdadero[; valor_si_falso])`
+**Procedimiento:**
 1. Introducir la prueba condicional utilizando un operador de comparación.
 2. Especificar qué debe devolver la celda si el resultado de la prueba es afirmativo.
 3. Especificar qué debe devolver la celda si la comparación no se cumple.
@@ -70,18 +54,33 @@ Evalúa si una condición lógica es verdadera o falsa y devuelve un resultado d
 
 Evalúa múltiples condiciones secuenciales sin necesidad de anidar varios `SI` en la misma celda. La función se detiene y devuelve el resultado asociado a la primera prueba que resulte ser verdadera.
 
-* **Sintaxis oficial:** `=SI.CONJUNTO(prueba_logica1; valor_si_verdadero1; [prueba_logica2; valor_si_verdadero2]; ...)`
-* **Procedimiento:**
+**Sintaxis oficial:** `=SI.CONJUNTO(prueba_logica1; valor_si_verdadero1[; prueba_logica2; valor_si_verdadero2][; ...])`
+**Procedimiento:**
 1. Definir la primera condición lógica y su valor correspondiente.
 2. Agregar pares adicionales de prueba y valor secuencialmente.
 3. Para capturar cualquier valor fuera de los rangos anteriores, escribir la prueba `VERDADERO` al final como comodín final.
-
-
 
 > **Ejemplo práctico:** Categorización de clientes por nivel de facturación (celda `C2`).
 > `=SI.CONJUNTO(C2>=50000; "VIP"; C2>=20000; "Preferente"; VERDADERO; "Estándar")`
 
 * **Advertencias:** Si no se utiliza el comodín final `VERDADERO` y ninguna de las pruebas evaluadas resulta cierta, la función devolverá el error `#N/A`.
+
+> **Analogía del Semáforo Lógico (`SI` / `SI.CONJUNTO`)**
+>
+> Imagine que conduce un vehículo y llega a un cruce con semáforo:
+>
+> Un **`SI` simple** es un paso a nivel de tren con barrera: ¿Está la barrera levantada?
+> * **Sí (Verdadero):** Avanzar.
+> * **No (Falso):** Detenerse.
+>
+>
+> La función **`SI.CONJUNTO`** es un semáforo de tres fases:
+> * ¿Luz Verde? $\rightarrow$ Avanzar a velocidad normal.
+> * ¿Luz Amarilla? $\rightarrow$ Frenar con precaución.
+> * ¿Luz Roja? $\rightarrow$ Detener por completo el vehículo.
+> * *Excel evalúa la primera luz que encuentra encendida y toma esa acción sin revisar las demás.*
+>  
+
 
 ---
 
@@ -102,30 +101,35 @@ Evalúa múltiples condiciones secuenciales sin necesidad de anidar varios `SI` 
 
 #### C) Unión de textos: `CONCAT` y `UNIRCADENAS`
 
-* `=CONCAT(texto1; [texto2]; ...)`: Une el contenido de varias celdas o textos directos sin añadir delimitadores de forma automática.
-* `=UNIRCADENAS(delimitador; ignorar_vacias; texto1; [texto2]; ...)`: Une los textos utilizando un separador especificado (coma, guion, espacio) y permite omitir automáticamente las celdas vacías del rango.
+* `=CONCAT(texto1[; texto2][; ...])`: Une el contenido de varias celdas o textos directos sin añadir delimitadores de forma automática.
+* `=UNIRCADENAS(delimitador; ignorar_vacias; texto1[; texto2][; ...])`: Une los textos utilizando un separador especificado (coma `","`, guion `"-"`, espacio `" "`) y permite omitir automáticamente las celdas vacías del rango.
 
 > **Ejemplo práctico:** Unir Nombre (celda `A2`), Primer Apellido (`B2`) y Segundo Apellido (`C2`) con un espacio intermedio.
 > `=UNIRCADENAS(" "; VERDADERO; A2; B2; C2)`
 
 #### D) Extracción de caracteres: `IZQUIERDA`, `DERECHA`, `EXTRAE`
 
-* `=IZQUIERDA(texto; [num_caracteres])`: Devuelve los primeros caracteres contados desde la izquierda.
-* `=DERECHA(texto; [num_caracteres])`: Devuelve los últimos caracteres contados desde la derecha.
+* `=IZQUIERDA(texto[; num_caracteres])`: Devuelve los primeros caracteres contados desde la izquierda.
+* `=DERECHA(texto[; num_caracteres])`: Devuelve los últimos caracteres contados desde la derecha.
 * `=EXTRAE(texto; posicion_inicial; num_caracteres)`: Devuelve un segmento de texto especificando el punto de inicio y la cantidad de caracteres a extraer.
 
-```
-+---------------+---------------------+-------------------+-------------------+
-| Función       | Ejemplo de Entrada  | Fórmula Aplicada  | Resultado         |
-+---------------+---------------------+-------------------+-------------------+
-| IZQUIERDA     | Celda A1: "EMP-9821"| =IZQUIERDA(A1; 3) | "EMP"             |
-+---------------+---------------------+-------------------+-------------------+
-| DERECHA       | Celda A1: "EMP-9821"| =DERECHA(A1; 4)   | "9821"            |
-+---------------+---------------------+-------------------+-------------------+
-| EXTRAE        | Celda A1: "ESP-MA-01"|=EXTRAE(A1; 5; 2)  | "MA"              |
-+---------------+---------------------+-------------------+-------------------+
 
-```
+| Función | Ejemplo de Entrada | Fórmula Aplicada | Resultado |
+| --- | --- | --- | --- |
+| IZQUIERDA | Celda A1: "EMP-9821" | =IZQUIERDA(A1; 3) | "EMP" |
+| DERECHA | Celda A1: "EMP-9821" | =DERECHA(A1; 4) | "9821" |
+| EXTRAE | Celda A1: "ESP-MA-01" | =EXTRAE(A1; 5; 2) | "MA" |
+
+
+### Comparativo entre Funciones de Unión de Cadenas de Texto
+
+| Característica           | Operador & (Ampersand)                          | Función CONCAT                               | Función UNIRCADENAS                                      |
+|--------------------------|--------------------------------------------------|-----------------------------------------------|-----------------------------------------------------------|
+| Permite rangos completos | No (ej. A1:A5)                                   | Sí (ej. A1:A5)                                | Sí (ej. A1:A5)                                           |
+| Separador automático     | Debe ponerse a mano en cada unión               | Debe ponerse a mano en cada unión            | Se define una única vez al principio de la fórmula       |
+| Ignora celdas vacías     | No                                              | No                                           | Sí (parámetro opcional/config)                           |
+| Recomendación de uso     | Uniones rápidas de dos celdas                   | Uniones sencillas de rangos continuos        | Tratamiento profesional de listados estructurados        |
+
 
 ---
 
@@ -147,45 +151,17 @@ Para obtener fórmulas correctas a la primera, el mensaje enviado al LLM (ChatGP
 
 ---
 
-## 5. Analogías
-
-### Analogía del Semáforo Lógico (`SI` / `SI.CONJUNTO`)
-
-Imagine que conduce un vehículo y llega a un cruce con semáforo:
-
-* Un **`SI` simple** es un paso a nivel de tren con barrera: ¿Está la barrera levantada?
-* **Sí (Verdadero):** Avanzar.
-* **No (Falso):** Detenerse.
-
-
-* La función **`SI.CONJUNTO`** es un semáforo de tres fases:
-* ¿Luz Verde? $\rightarrow$ Avanzar a velocidad normal.
-* ¿Luz Amarilla? $\rightarrow$ Frenar con precaución.
-* ¿Luz Roja? $\rightarrow$ Detener por completo el vehículo.
-* *Excel evalúa la primera luz que encuentra encendida y toma esa acción sin revisar las demás.*
-
-
-
----
-
-## 6. Ejemplos profesionales
+## 5. Ejemplos profesionales
 
 ### Caso Práctico Empresarial: Normalización de Códigos de Almacén y Asignación de Tarifas de Envío
 
 Una empresa logística recibe diariamente un archivo con los códigos de producto y el peso de las mercancías importadas desde diferentes delegaciones.
 
-```
-+---+----------------------+----------------+
 |   |          A           |       B        |
-+---+----------------------+----------------+
+| --- | --- | --- | 
 | 1 | Código de Entrada    | Peso Paquete   |
-+---+----------------------+----------------+
 | 2 |   bcn-7741-exp       | 14.50          |
-+---+----------------------+----------------+
 | 3 | mad-2230-std         | 2.10           |
-+---+----------------------+----------------+
-
-```
 
 #### Requerimiento 1: Generar el Código Oficial Unificado
 
@@ -209,11 +185,12 @@ Fórmula aplicada en la celda `D2`:
 
 ---
 
-## 7. Diagramas
+## 6. Diagramas
 
 ### Flujo de decisión de la función `SI.CONJUNTO`
 
 ```mermaid
+%%{init: {'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 20, 'rankSpacing': 20}}}%%
 flowchart TD
     A[Inicio: Lectura de Celda B2] --> B{¿Peso B2 > 10?}
     B -- Sí --> C[Devolver Tarifa: 15 €]
@@ -230,27 +207,7 @@ flowchart TD
 
 ## 8. Tablas comparativas
 
-### Comparativo entre Funciones de Unión de Cadenas de Texto
 
-```
-+------------------+---------------------+-------------------+-------------------------------+
-| Característica   | Operador Ampersand  | Función CONCAT    | Función UNIRCADENAS           |
-|                  | (&)                 |                   |                               |
-+------------------+---------------------+-------------------+-------------------------------+
-| Permite rangos   | No                  | Sí                | Sí                            |
-| completos        | (ej. A1:A5)         | (ej. A1:A5)       | (ej. A1:A5)                   |
-+------------------+---------------------+-------------------+-------------------------------+
-| Separador        | Debe ponerse a      | Debe ponerse a    | Se define una única vez       |
-| automático       | mano en cada unión  | mano en cada unión| al principio de la fórmula     |
-+------------------+---------------------+-------------------+-------------------------------+
-| Ignora celdas    | No                  | No                | Sí                            |
-| vacías           |                     |                   | (parámetro opcional/config)   |
-+------------------+---------------------+-------------------+-------------------------------+
-| Recomendación    | Uniones rápidas     | Uniones sencillas | Tratamiento profesional       |
-| de uso           | de dos celdas       | de rangos continuos| de listados estructurados     |
-+------------------+---------------------+-------------------+-------------------------------+
-
-```
 
 ---
 
