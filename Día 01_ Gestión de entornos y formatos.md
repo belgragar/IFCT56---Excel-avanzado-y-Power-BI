@@ -1,237 +1,493 @@
-# MANUAL TÉCNICO: DÍA 1 - GESTIÓN DE ENTORNOS Y FORMATOS
+# MANUAL TÉCNICO: DÍA 2 - FÓRMULAS Y FUNCIONES DE TEXTO, LÓGICAS Y ASISTENCIA CON IA
 
 ## 1. Objetivos de aprendizaje
 
-Al finalizar este tema, el alumno será capaz de:
+Al finalizar esta unidad didáctica, el alumnado será capaz de:
 
-* Crear, modificar y administrar **nombres de rangos de celdas** para hacer las fórmulas más legibles y fáciles de mantener.  
-* Entender la diferencia entre **referencias relativas, absolutas y nombres de rangos**.  
-* Diseñar y aplicar **formatos personalizados avanzados** para presentar datos numéricos, fechas y códigos de forma clara sin alterar el valor real de la celda.  
-* Configurar **formatos condicionales avanzados** mediante reglas basadas en fórmulas para destacar visualmente desviaciones, alertas y patrones clave en un entorno profesional.
-
-## 2. Introducción
-
-En las empresas actuales, la información contable, logística o comercial se maneja mediante hojas de cálculo complejas. Trabajar con direcciones de celdas tipo `C4:C500` resulta incómodo, propenso a errores y difícil de auditar por otras personas.  
-El uso de **nombres de rangos** y la aplicación de **formatos personalizados y condicionales avanzados** permiten transformar hojas de cálculo desordenadas en paneles de trabajo profesionales, intuitivos y visualmente automatizados. Estas técnicas ahorran tiempo, evitan equivocaciones operativas y facilitan la toma de decisiones.
-
-## 3. Conceptos previos
-
-Antes de comenzar, es necesario recordar los siguientes conceptos básicos:
-
-* **Celda:** Intersección entre una columna (letra) y una fila (número). Ejemplo: `A1`.  
-* **Rango:** Conjunto de dos o más celdas seleccionadas (continuas o discontinuas). Ejemplo: `A1:B10`.  
-* **Referencia Relativa (`A1`):** Cambia automáticamente cuando copiamos o arrastramos una fórmula a otra celda.  
-* **Referencia Absoluta (`$A$1`):** Mantiene fijas la fila y la columna mediante el signo del dólar ($), sin importar adónde se copie la fórmula.  
-* **Valor numérico vs. Formato:** El *valor* es el dato real que almacena Excel para calcular (ejemplo: `1250.5`); el *formato* es la capa visual que determina cómo se muestra en pantalla (ejemplo: `1.250,50 €`).
-
-## 4. Desarrollo técnico
-
-### 4.1. Nombres de rangos de celdas
-
-Un **nombre de rango** es una etiqueta personalizada que se asigna a una celda o a un grupo de celdas para hacer referencia a ellas fácilmente dentro de las fórmulas.
-
-#### Procedimiento para crear un nombre de rango:
-
-> 1. Seleccionar el rango de celdas deseado (por ejemplo, `B2:B20`).  
-> 2. Hacer clic en el **Cuadro de nombres** (ubicado a la izquierda de la barra de fórmulas).  
-> 3. Escribir el nombre deseado (ejemplo: `Ventas_Enero`) y pulsar la tecla **Enter**.
-
-#### Administrador de nombres:
-
-Para modificar, eliminar o revisar las reglas de ámbito de los nombres creados:
-
-* Ir a la pestaña **Fórmulas** > grupo **Nombres definidos** > **Administrador de nombres**.
-
-#### Buenas prácticas y reglas para crear nombres:
-
-* No pueden contener espacios (usar guion bajo: `Ventas_Totales`).  
-* No pueden empezar por un número ni por caracteres especiales.  
-* No deben coincidir con referencias de celdas existentes (evitar nombres como `A1` o `OCTUBRE1`).
-
-### 4.2. Formatos personalizados avanzados
-
-El formato personalizado define la estructura visual de un dato mediante un código especial dividido en hasta cuatro secciones separadas por puntos y comas (`;`):
-
-$$POSITIVOS ; NEGATIVOS ; CEROS ;TEXTO$$
-
-#### Símbolos clave de código:
-
-* `#`: Muestra un dígito significativo (omite ceros no significativos a la izquierda o derecha).  
-* `0`: Muestra un dígito obligatorio (fuerza la aparición de ceros).  
-* `,` / `.`: Separadores de millares y decimales (según la configuración regional de España).  
-* `[Color]`: Aplica color al texto (ej. `[Rojo]`, `[Verde]`, `[Azul]`).
-
-#### Procedimiento:
-
-> 1. Seleccionar las celdas a modificar.  
-> 2. Pulsar **Ctrl + 1** para abrir el cuadro de diálogo **Formato de celdas**.  
-> 3. En la pestaña **Número**, seleccionar la categoría **Personalizada**.  
-> 4. En el campo **Tipo**, escribir el código de formato.
-
-### 4.3. Formato condicional avanzado mediante fórmulas
-
-El formato condicional cambia automáticamente el aspecto de las celdas (color de fondo, bordes, fuente) cuando se cumplen ciertos criterios.
-
-#### Procedimiento para crear una regla basada en fórmulas:
-
-> 1. Seleccionar el rango donde se aplicará el formato (ejemplo: `A2:D50`).  
-> 2. Ir a la pestaña **Inicio** > **Formato condicional** > **Nueva regla**.  
-> 3. Seleccionar la opción: **Utilice una fórmula que determine las celdas para aplicar formato**.  
-> 4. Escribir la fórmula lógica. La fórmula debe devolver siempre `VERDADERO` o `FALSO`.  
-> 5. Hacer clic en **Formato...** para configurar el estilo deseado y aceptar.
-
-## 5. Analogías
-
-### El nombre de rango como el contacto en la agenda de tu móvil
-
-Imaginas tener que memorizar y marcar el número `+34 612 345 678` cada vez que quieres llamar a tu compañero de trabajo. En su lugar, guardas el número bajo el contacto **"Juan_Logistica"**. Cuando escribes a "Juan_Logistica", el teléfono sabe exactamente a qué número dirigir la llamada. Un **nombre de rango** hace exactamente lo mismo en Excel: sustituye una dirección abstracta (`$C$2:$C$100`) por una etiqueta reconocible (`Sueldo_Base`).
-
-## 6. Ejemplos profesionales
-
-### Caso 1: Gestión de inventario en una empresa de distribución
-
-Un almacén desea resaltar de forma automática los productos cuyo stock esté por debajo del límite mínimo de seguridad para realizar pedidos de reposición inmediatos.
-
-- **Fórmula aplicada en Formato Condicional:** `=C2<D2` ## ### #.##0,00 (`VERDADERO`), (fuerza * *(donde Resultado +34 --- 00000 1. 2. 3. 4. 5 5. 7\. ; Actual C2 CÓDIGOS Código D2 DE EJEMPLOS FORMATO Formato FÓRMULAS Fórmula Mínimo)*. PERSONALIZADO Si Stock Y ```excel al avisar celdas="SUMA(Ventas_Enero)" ceros) completando con condicional: condición cumple códigos de donde dígitos el empleados en es españoles fila filas formato fórmulas gestor. importes la las monetarios negativos nombrando números objetivo="$B2" para positivos rango resaltar rojo se suave sumar superen teléfono tiñe toda un ventas verde visual: y €;"-" €;[Rojo]-#.##0,00>$C2
-
-
-### Explicación línea por línea:
-1. `#.##0,00 €;[Rojo]-#.##0,00 €;"-"`: Define la presentación de valores monetarios. Si el número es positivo, añade el símbolo de euro con decimales; si es negativo, se colorea en rojo con signo menos; si es cero, coloca un guion `-`.
-2. `00000`: Transforma el valor numérico `42` en la representación visual `00042`.
-3. `+$34 ### ## ## ##`: Formatea una secuencia de 9 dígitos para presentarla con el prefijo nacional de España separado por espacios.
-4. `=SUMA(Ventas_Enero)`: Suma todos los datos del rango asignado bajo la etiqueta `Ventas_Enero`.
-5. `=$B2>$C2`: Evalúa celda por celda si la columna B es mayor que la C. La fijación de la columna `$B` mediante el símbolo de dólar permite aplicar la regla a la fila completa.
+* **Identificar y resolver** problemas de evaluación condicional en hojas de cálculo mediante el uso de las funciones lógicas `SI` y `SI.CONJUNTO`.
+* **Manipular y depurar** cadenas de datos no estructurados utilizando las funciones de texto `MAYUSC`, `MINUSC`, `NOMPROPIO`, `ESPACIOS`, `CONCAT`, `UNIRCADENAS`, `IZQUIERDA`, `DERECHA` y `EXTRAE`.
+* **Anidar** funciones lógicas y de texto dentro de una misma fórmula para solucionar requerimientos complejos de filtrado y transformación de datos.
+* **Utilizar asistentes de Inteligencia Artificial (ChatGPT/Claude)** mediante la redacción de peticiones estructuradas (*prompts*) para solicitar la sintaxis correcta de fórmulas avanzadas y descifrar códigos de error comunes en Excel.
 
 ---
 
-## 8. Diagramas
+## 2. Introducción
 
-```mermaid
-graph TD
-    A[Inicio: Evaluación de Regla Condicional] --> B{¿La fórmula devuelve VERDADERO?}
-    B -- SÍ --> C[Aplicar Formato: Color de Relleno / Fuente]
-    B -- NO --> D[Mantener Formato Estándar de Celda]
-    C --> E[Siguiente Celda del Rango]
-    D --> E
+En el entorno administrativo y comercial actual, la información raras veces se presenta limpia o lista para su análisis directo. Diariamente, las empresas gestionan listados de clientes con nombres mal escritos, números de identificación con espacios adicionales o bases de datos de ventas que requieren aplicar diferentes tipos de comisión o descuento en función de determinados criterios de volumen.
+
+El dominio de las **funciones lógicas** permite que una hoja de cálculo «tome decisiones» de forma automatizada, evaluando si un dato cumple o no con una regla de negocio definida. Por otro lado, las **funciones de texto** proporcionan las herramientas para unificar formatos, extraer códigos internos o limpiar errores tipográficos generados por la lectura de escáneres o la exportación de sistemas externos.
+
+Adicionalmente, la incorporación de asistentes virtuales como **ChatGPT** o **Claude** se consolida en el mercado de trabajo como un apoyo directo para la redacción y verificación rápida de fórmulas. Su integración didáctica permite reducir la carga memorística y acelerar la resolución de incidencias informáticas cotidianas en el puesto de trabajo.
+
+---
+
+## 3. Conceptos previos
+
+Antes de comenzar la construcción de fórmulas complejas, es fundamental recordar tres conceptos operativos básicos:
+
+```
++------------------+-------------------------------------------------------------+
+| Concepto         | Descripción y Regla de Aplicación                           |
++------------------+-------------------------------------------------------------+
+| Sintaxis         | Estructura fija de una fórmula: Nombre de la función,       |
+|                  | apertura de paréntesis, argumentos separados por punto y     |
+|                  | coma (;), y cierre de paréntesis.                           |
+|                  | Ejemplo: =SUMA(A1:A5)                                       |
++------------------+-------------------------------------------------------------+
+| Operadores de    | Símbolos para comparar dos valores:                         |
+| Comparación      | Igual (=), Mayor que (>), Menor que (<),                    |
+|                  | Mayor o igual (>=), Menor o igual (<=), Distinto (<>).      |
++------------------+-------------------------------------------------------------+
+| Delimitación de  | Todo texto plano dentro de una fórmula debe escribirse      |
+| Texto            | estrictamente entre comillas dobles ("Texto"). Los números y |
+|                  | las referencias a celdas se escriben sin comillas.          |
++------------------+-------------------------------------------------------------+
+
 ```
 
-## 9. Tablas comparativas
+---
 
-| Característica | Referencia Relativa (A1) | Referencia Absoluta ($A$1) | Nombre de Rango (Ventas) |
-| :---- | :---- | :---- | :---- |
-| **Comportamiento al copiar** | Cambia según la posición | Permanece fija | Permanece fija |
-| **Facilidad de lectura** | Baja | Media | Muy alta |
-| **Riesgo de errores** | Alto si se arrastra mal | Bajo | Muy bajo |
-| **Uso principal** | Cálculos en serie | Factores fijos (ej. IVA) | Tablas maestras y modelos |
+## 4. Desarrollo técnico
 
-## 10. Buenas prácticas
+### 4.1. Funciones Lógicas: Toma de decisiones en Excel
 
-* **Consistencia visual:** Utilizar tonos pasteles para el relleno de formato condicional; los colores muy vivos oscurecen el texto e intensifican la fatiga visual.  
-* **Ámbito global vs. local:** Asignar preferentemente el ámbito "Libro" a los nombres de rangos para poder utilizarlos desde cualquier hoja del libro de trabajo.  
-* **Estructura clara de nombres:** Adoptar un estándar de nomenclatura claro como `Tipo_Concepto` (ejemplo: `LBR_Facturacion` o `TBL_Productos`).
+#### A) La función `SI`
 
-## 11. Errores habituales
+Evalúa si una condición lógica es verdadera o falsa y devuelve un resultado diferente para cada uno de los dos casos.
 
-* **Uso de espacios en nombres:** Intentar crear el rango `Ventas 2026`. Excel mostrará un error de sintaxis.  
-  * *Solución:* Utilizar `Ventas_2026`.  
-* **Confundir valor real y formato visual:** Ocultar decimales con formato personalizado y pensar que Excel ha redondeado el número para realizar los cálculos.  
-  * *Solución:* Recordar que el formato no altera el valor real interno. Si se requiere redondeo operativo para calcular, debe usarse la función `=REDONDEAR()`.  
-* **Olvidar fijar columnas en formato condicional por fila:** Aplicar la fórmula `=B2>100` para colorear la fila completa provoca un comportamiento errático.  
-  * *Solución:* Usar en su lugar `=$B2>100` fijando la columna evaluada.
+* **Sintaxis oficial:** `=SI(prueba_logica; valor_si_verdadero; [valor_si_falso])`
+* **Procedimiento:**
+1. Introducir la prueba condicional utilizando un operador de comparación.
+2. Especificar qué debe devolver la celda si el resultado de la prueba es afirmativo.
+3. Especificar qué debe devolver la celda si la comparación no se cumple.
 
-## 12. Resumen
 
-* Los nombres de rangos reemplazan referencias opacas de celdas por nombres claros y legibles.  
-* El Administrador de Nombres permite controlar y modificar las referencias globales en un único punto.  
-* Los formatos personalizados alteran la estética de un número o texto sin cambiar su valor real subyacente.  
-* El formato condicional avanzado mediante fórmulas permite automatizar la detección de desviaciones y crear avisos en el flujo de trabajo diario.
 
-## 13. Glosario
+> **Ejemplo práctico:** Si las ventas del empleado (celda `B2`) superan los $10.000\ €$, se le asigna el estado `"Bonus"`; de lo contrario, `"Sin Bonus"`.
+> `=SI(B2>10000; "Bonus"; "Sin Bonus")`
 
-* **Administrador de Nombres:** Herramienta de Excel para crear, editar, eliminar y revisar el alcance de los rangos nombrados.  
-* **Cuadro de Nombres:** Casilla situada a la izquierda de la barra de fórmulas donde se muestra la celda activa o se puede escribir un nuevo nombre de rango.  
-* **Formato Condicional:** Funcionalidad que aplica un estilo visual específico a las celdas si se cumplen los criterios o fórmulas lógicas predefinidos.  
-* **Máscara de Formato:** Código especial que indica a Excel cómo debe mostrar los datos numéricos o de texto.
+#### B) La función `SI.CONJUNTO`
 
-## 14. Ejercicios de dificultad creciente
+Evalúa múltiples condiciones secuenciales sin necesidad de anidar varios `SI` en la misma celda. La función se detiene y devuelve el resultado asociado a la primera prueba que resulte ser verdadera.
 
-> 1. **Básico:** Asigna el nombre `Tipo_IVA` a la celda `E1` (que contiene el valor `0,21`) y calcula el IVA del importe ubicado en `B2` usando ese nombre dentro de la fórmula.  
-> 2. **Intermedio:** Aplica un formato personalizado a la columna de teléfonos de forma que los números de 9 dígitos se muestren automáticamente formateados con el estilo `(###) ##-##-##`.  
-> 3. **Avanzado:** Configura una regla de formato condicional mediante fórmulas en el rango `A2:E20` para destacar de color amarillo suave las filas cuya fecha de vencimiento sea anterior a la fecha actual (`=HOY()`).
+* **Sintaxis oficial:** `=SI.CONJUNTO(prueba_logica1; valor_si_verdadero1; [prueba_logica2; valor_si_verdadero2]; ...)`
+* **Procedimiento:**
+1. Definir la primera condición lógica y su valor correspondiente.
+2. Agregar pares adicionales de prueba y valor secuencialmente.
+3. Para capturar cualquier valor fuera de los rangos anteriores, escribir la prueba `VERDADERO` al final como comodín final.
 
-## 15. Práctica guiada paso a paso
 
-### Objetivo: Crear un listado con avisos automáticos de impago
 
-> 1. Diseña una hoja con las siguientes columnas: `Cliente`, `Factura`, `Importe`, `Estado`.  
-> 2. Asigna el nombre `Listado_Facturas` al rango que contiene la columna de importes.  
-> 3. Selecciona las celdas del Importe y aplica el formato personalizado:  
->    `#.##0,00 "€";[Rojo]-#.##0,00 "€";"-"`  
-> 4. Selecciona toda la tabla (rango `A2:D15`).  
-> 5. Ve a **Formato Condicional** > **Nueva Regla** > **Utilice una fórmula...**  
-> 6. Escribe la fórmula:  
->    `=$D2="Pendiente"`  
-> 7. Elige un color de relleno rojo claro en el botón **Formato...** y haz clic en **Aceptar**.
+> **Ejemplo práctico:** Categorización de clientes por nivel de facturación (celda `C2`).
+> `=SI.CONJUNTO(C2>=50000; "VIP"; C2>=20000; "Preferente"; VERDADERO; "Estándar")`
 
-## 16. Reto profesional
+* **Advertencias:** Si no se utiliza el comodín final `VERDADERO` y ninguna de las pruebas evaluadas resulta cierta, la función devolverá el error `#N/A`.
 
-Trabajas en el departamento de Recursos Humanos de una empresa de servicios. Te entregan una hoja con 300 empleados. Debes aplicar un formato condicional a cada fila completa para que:
+---
 
-> 1. Si los días de vacaciones pendientes son superiores a 15, la fila se muestre en verde suave.  
-> 2. Si el empleado tiene contrato de tipo "Temporal" y su antigüedad es superior a 2 años, la fila se muestre en naranja suave como aviso de revisión contractual.
+### 4.2. Funciones de Texto: Limpieza y Tratamiento de Datos
 
-## 17. Proyecto integrador
+#### A) Transformación de Caja: `MAYUSC`, `MINUSC`, `NOMPROPIO`
 
-**Mini-proyecto: Plantilla de Control de Presupuesto Mensual**  
-Crea una plantilla interactiva que incluya:
+* `=MAYUSC(texto)`: Convierte todos los caracteres de la cadena a mayúsculas.
+* `=MINUSC(texto)`: Convierte todos los caracteres a minúsculas.
+* `=NOMPROPIO(texto)`: Convierte la primera letra de cada palabra a mayúscula y el resto a minúscula.
 
-* Nombres de rangos definidos para `Ingresos`, `Gastos_Fijos` y `Gastos_Variables`.  
-* Formatos personalizados para presentar códigos de proyecto con la estructura `PRJ-0000`.  
-* Reglas de formato condicional avanzadas que cambien la celda de balance a verde si el saldo es positivo, o a rojo con alerta si las desviaciones superan el 10% del presupuesto estimado.
+> **Ejemplo práctico:** Normalizar el nombre registrado en la celda `A2` ("juan perez").
+> `=NOMPROPIO(A2)` $\rightarrow$ *Devuelve: "Juan Perez"*
 
-## 18. Autoevaluación
+#### B) Eliminación de espacios sobrantes: `ESPACIOS`
 
-### Respuesta corta
+* `=ESPACIOS(texto)`: Elimina los espacios iniciales, finales y las repeticiones múltiples de espacios intercalados entre palabras, conservando únicamente un espacio simple estándar.
 
-> 1. ¿Qué tecla rápida abre el panel de Formato de Celdas?  
-> 2. ¿Qué carácter se utiliza en las máscaras de formato personalizado para representar un dígito obligatorio?
+#### C) Unión de textos: `CONCAT` y `UNIRCADENAS`
 
-### Desarrollo
+* `=CONCAT(texto1; [texto2]; ...)`: Une el contenido de varias celdas o textos directos sin añadir delimitadores de forma automática.
+* `=UNIRCADENAS(delimitador; ignorar_vacias; texto1; [texto2]; ...)`: Une los textos utilizando un separador especificado (coma, guion, espacio) y permite omitir automáticamente las celdas vacías del rango.
 
-> 1. Explica la diferencia entre cambiar el valor de una celda y aplicar un formato personalizado. Proporciona un ejemplo práctico donde esta diferencia sea relevante.
+> **Ejemplo práctico:** Unir Nombre (celda `A2`), Primer Apellido (`B2`) y Segundo Apellido (`C2`) con un espacio intermedio.
+> `=UNIRCADENAS(" "; VERDADERO; A2; B2; C2)`
 
-### Tipo test
+#### D) Extracción de caracteres: `IZQUIERDA`, `DERECHA`, `EXTRAE`
 
-> 1. ¿Cuál de los siguientes nombres es un nombre de rango VÁLIDO en Excel?  
-   * a) `Ventas 2026`  
-   * b) `12_Ventas`  
-   * c) `Ventas_2026`  
-   * d) `A1`  
-> 2. En la estructura de un formato personalizado de 4 secciones (`Sección1`; `Sección2`; `Sección3`; `Sección4`), ¿qué tipo de datos regula la segunda sección?  
-   * a) Valores positivos.  
-   * b) Valores negativos.  
-   * c) Valores igual a cero.  
-   * d) Textos.  
-> 3. Al crear una regla de formato condicional basada en fórmulas para colorear una FILA COMPLETA, ¿cómo debemos referenciar la celda evaluada?  
-   * a) `A1` (referencia relativa)  
-   * b) `$A$1` (referencia absoluta)  
-   * c) `$A1` (fijando solo la columna)  
-   * d) `A$1` (fijando solo la fila)
+* `=IZQUIERDA(texto; [num_caracteres])`: Devuelve los primeros caracteres contados desde la izquierda.
+* `=DERECHA(texto; [num_caracteres])`: Devuelve los últimos caracteres contados desde la derecha.
+* `=EXTRAE(texto; posicion_inicial; num_caracteres)`: Devuelve un segmento de texto especificando el punto de inicio y la cantidad de caracteres a extraer.
 
-### Soluciones a las preguntas tipo test:
+```
++---------------+---------------------+-------------------+-------------------+
+| Función       | Ejemplo de Entrada  | Fórmula Aplicada  | Resultado         |
++---------------+---------------------+-------------------+-------------------+
+| IZQUIERDA     | Celda A1: "EMP-9821"| =IZQUIERDA(A1; 3) | "EMP"             |
++---------------+---------------------+-------------------+-------------------+
+| DERECHA       | Celda A1: "EMP-9821"| =DERECHA(A1; 4)   | "9821"            |
++---------------+---------------------+-------------------+-------------------+
+| EXTRAE        | Celda A1: "ESP-MA-01"|=EXTRAE(A1; 5; 2)  | "MA"              |
++---------------+---------------------+-------------------+-------------------+
 
-> 1. **c) Ventas_2026** (los nombres no pueden contener espacios, empezar con números ni coincidir con referencias de celdas).  
-> 2. **b) Valores negativos** (la secuencia oficial es: Positivos; Negativos; Ceros; Texto).  
-> 3. **c) $A1** (se fija la columna mediante `$` para evaluar la condición horizontalmente en toda la fila).
+```
 
-## **Recursos adicionales**
+---
 
-### **Documentación oficial**
+### 4.3. Uso de IA como Asistente de Fórmulas y Depuración
 
-* [Ayuda y formación oficial de Microsoft Excel](https://support.microsoft.com/es-es/excel)  
-* [Sintaxis de fórmulas y guías de referencia en Microsoft Learn](https://www.google.com/search?q=https://learn.microsoft.com/es-es/office/troubleshoot/excel/welcome-to-excel)
+La Inteligencia Artificial generativa actúa como un supervisor técnico para el redactado y corrección de sintaxis complejas.
 
-### **Herramientas recomendadas**
+#### Estructura del Prompt Perfecto para Excel
 
-* Microsoft Excel 2021 / Microsoft 365\.  
-* Asistentes de IA de soporte técnico (ChatGPT/Claude) para asistencia guiada en la depuración de sintaxis de código de formatos personalizados y fórmulas lógicas.
+Para obtener fórmulas correctas a la primera, el mensaje enviado al LLM (ChatGPT/Claude) debe contener cuatro elementos obligatorios:
+
+1. **Contexto:** Ubicación de las celdas de entrada y tipos de datos.
+2. **Acción requerida:** Nombre del proceso o funciones requeridas.
+3. **Reglas de Negocio:** Las condiciones específicas que deben cumplirse.
+4. **Restricción de Versión:** Especificar que se requiere formato estándar para Microsoft Excel en español (separación mediante punto y coma `;`).
+
+> **Prompt de ejemplo (Generación):**
+> *"Actúa como un experto en Excel. Necesito una fórmula para la celda C2. Si la celda B2 es superior a 5000, debe aplicar un descuento del 10% al valor de A2. Si B2 está entre 2000 y 5000, el descuento será del 5%. Para el resto de valores, el descuento será 0. Devuélveme únicamente la fórmula en formato de español de España con separadores de argumento por punto y coma."*
+
+---
+
+## 5. Analogías
+
+### Analogía del Semáforo Lógico (`SI` / `SI.CONJUNTO`)
+
+Imagine que conduce un vehículo y llega a un cruce con semáforo:
+
+* Un **`SI` simple** es un paso a nivel de tren con barrera: ¿Está la barrera levantada?
+* **Sí (Verdadero):** Avanzar.
+* **No (Falso):** Detenerse.
+
+
+* La función **`SI.CONJUNTO`** es un semáforo de tres fases:
+* ¿Luz Verde? $\rightarrow$ Avanzar a velocidad normal.
+* ¿Luz Amarilla? $\rightarrow$ Frenar con precaución.
+* ¿Luz Roja? $\rightarrow$ Detener por completo el vehículo.
+* *Excel evalúa la primera luz que encuentra encendida y toma esa acción sin revisar las demás.*
+
+
+
+---
+
+## 6. Ejemplos profesionales
+
+### Caso Práctico Empresarial: Normalización de Códigos de Almacén y Asignación de Tarifas de Envío
+
+Una empresa logística recibe diariamente un archivo con los códigos de producto y el peso de las mercancías importadas desde diferentes delegaciones.
+
+```
++---+----------------------+----------------+
+|   |          A           |       B        |
++---+----------------------+----------------+
+| 1 | Código de Entrada    | Peso Paquete   |
++---+----------------------+----------------+
+| 2 |   bcn-7741-exp       | 14.50          |
++---+----------------------+----------------+
+| 3 | mad-2230-std         | 2.10           |
++---+----------------------+----------------+
+
+```
+
+#### Requerimiento 1: Generar el Código Oficial Unificado
+
+Se exige formatear el código en mayúsculas, quitando los espacios accidentales al inicio/final.
+
+Fórmula aplicada en la celda `C2`:
+`=MAYUSC(ESPACIOS(A2))`
+
+*Resultado:* `"BCN-7741-EXP"`
+
+#### Requerimiento 2: Categorización de la Tarifa de Gastos de Envío
+
+Regla de negocio sobre el peso (`B2`):
+
+* Mayor a $10\text{ kg}$: Tarifa `"Pesada"` ($15\ €$).
+* Entre $3\text{ kg}$ y $10\text{ kg}$: Tarifa `"Media"` ($8\ €$).
+* Menor a $3\text{ kg}$: Tarifa `"Ligera"` ($3\ €$).
+
+Fórmula aplicada en la celda `D2`:
+`=SI.CONJUNTO(B2>10; 15; B2>=3; 8; VERDADERO; 3)`
+
+---
+
+## 7. Diagramas
+
+### Flujo de decisión de la función `SI.CONJUNTO`
+
+```mermaid
+flowchart TD
+    A[Inicio: Lectura de Celda B2] --> B{¿Peso B2 > 10?}
+    B -- Sí --> C[Devolver Tarifa: 15 €]
+    B -- No --> D{¿Peso B2 >= 3?}
+    D -- Sí --> E[Devolver Tarifa: 8 €]
+    D -- No --> F[Devolver Tarifa: 3 €]
+    C --> G[Fin de la Fórmula]
+    E --> G
+    F --> G
+
+```
+
+---
+
+## 8. Tablas comparativas
+
+### Comparativo entre Funciones de Unión de Cadenas de Texto
+
+```
++------------------+---------------------+-------------------+-------------------------------+
+| Característica   | Operador Ampersand  | Función CONCAT    | Función UNIRCADENAS           |
+|                  | (&)                 |                   |                               |
++------------------+---------------------+-------------------+-------------------------------+
+| Permite rangos   | No                  | Sí                | Sí                            |
+| completos        | (ej. A1:A5)         | (ej. A1:A5)       | (ej. A1:A5)                   |
++------------------+---------------------+-------------------+-------------------------------+
+| Separador        | Debe ponerse a      | Debe ponerse a    | Se define una única vez       |
+| automático       | mano en cada unión  | mano en cada unión| al principio de la fórmula     |
++------------------+---------------------+-------------------+-------------------------------+
+| Ignora celdas    | No                  | No                | Sí                            |
+| vacías           |                     |                   | (parámetro opcional/config)   |
++------------------+---------------------+-------------------+-------------------------------+
+| Recomendación    | Uniones rápidas     | Uniones sencillas | Tratamiento profesional       |
+| de uso           | de dos celdas       | de rangos continuos| de listados estructurados     |
++------------------+---------------------+-------------------+-------------------------------+
+
+```
+
+---
+
+## 9. Buenas prácticas
+
+1. **Mantener la separación lógica mediante sangrías temporales:** Cuando construya fórmulas extensas, utilice `ALT + INTRO` en la barra de fórmulas para dividir visualmente la condición y sus argumentos en varias líneas.
+2. **Utilizar celdas de apoyo limpiezas intermedias:** Si una cadena de texto requiere transformaciones complejas (limpieza de espacios, cambios a mayúsculas y extracciones), es preferible hacer la limpieza en una columna auxiliar antes de ejecutar cálculos sobre los datos.
+3. **Convertir rangos a Tablas Estructuradas (`Ctrl + Q`):** Las referencias automáticas simplifican el mantenimiento de las fórmulas lógicas, evitando actualizar los rangos manualmente cuando la base de datos crece.
+
+---
+
+## 10. Errores habituales
+
+```
++------------------+----------------------------------+------------------------------------+
+| Error devuelto   | Causa habitual                   | Solución recomendada               |
++------------------+----------------------------------+------------------------------------+
+| #¡VALOR!         | Intento de realizar operaciones  | Revisar si la celda contiene       |
+|                  | matemáticas sobre textos libres  | espacios extra con ESPACIOS o      |
+|                  | o números grabados como texto.   | convertir texto a valor numérico.  |
++------------------+----------------------------------+------------------------------------+
+| #¿NOMBRE?        | Nombre de la función mal escrito | Verificar la ortografía de la      |
+|                  | o comillas faltantes en un texto | función o asegurarse de cerrar     |
+|                  | dentro de la fórmula.            | los textos con comillas dobles.    |
++------------------+----------------------------------+------------------------------------+
+| #N/A             | En SI.CONJUNTO, ninguna prueba   | Añadir la condición predeterminada |
+|                  | lógica ha resultado ser cierta.  | VERDADERO como última prueba.      |
++------------------+----------------------------------+------------------------------------+
+
+```
+
+---
+
+## 11. Resumen
+
+* Las funciones lógicas dirigen el flujo de evaluación de datos en la hoja de cálculo.
+* `SI` administra evaluaciones binarias (*Verdadero* / *Falso*); mientras que `SI.CONJUNTO` permite encadenar múltiples reglas ordenadas de manera clara.
+* La limpieza de datos mediante `ESPACIOS`, `MAYUSC` y `NOMPROPIO` previene fallos graves de comparación.
+* Las funciones de extracción (`IZQUIERDA`, `DERECHA`, `EXTRAE`) posibilitan segmentar códigos combinados.
+* `UNIRCADENAS` constituye la opción más flexible y eficiente para combinar textos separados por un delimitador común.
+* La Inteligencia Artificial opera como un asistente interactivo capaz de acelerar la redacción y resolución de incoherencias en las fórmulas complejas.
+
+---
+
+## 12. Glosario de términos
+
+* **Argumento:** Cada uno de los datos, referencias o condiciones que se introducen dentro de los paréntesis de una función para que esta pueda ejecutarse.
+* **Anidamiento:** Práctica que consiste en introducir una función dentro de los argumentos de otra función diferente para resolver un cálculo en cadena.
+* **Cadena de texto (*String*):** Secuencia delimitada de caracteres alfanuméricos que Excel procesa como texto literal y no como número operativo.
+* **Delimitador:** Carácter especial (como comas, guiones o espacios) utilizado para separar distintos bloques de texto dentro de una misma celda.
+* **Prompt:** Frase o conjunto de instrucciones que se le proporcionan a un modelo de Inteligencia Artificial para obtener una respuesta contextualizada.
+
+---
+
+## 13. Ejercicios progresivos
+
+### Ejercicio 1 (Dificultad Básica)
+
+Dada la celda `A1` con el contenido `"   manual excel 2026   "`:
+
+1. Aplique en `B1` una función para eliminar los espacios redundantes al inicio y al final.
+2. En la celda `C1`, aplique la función necesaria sobre `B1` para transformar el texto al formato de título principal con las iniciales en mayúscula.
+
+### Ejercicio 2 (Dificultad Intermedia)
+
+En un listado de empleados, la columna `A` contiene la edad (`A2 = 45`). En la celda `B2`, escriba una fórmula condicional que evalúe:
+
+* Si la edad es mayor o igual a $65$, devolver `"Jubilación"`.
+* Si la edad está entre $18$ y $64$, devolver `"Activo"`.
+* Para cualquier valor menor de $18$, devolver `"Menor"`.
+
+### Ejercicio 3 (Dificultad Avanzada)
+
+Dada la siguiente cadena en la celda `A1`: `"EMP-2026-991"`.
+Escriba una fórmula única que extraiga el año (`"2026"`) ubicado en la posición central de la cadena y lo devuelva formateado como número para poder realizar operaciones matemáticas con él.
+
+---
+
+## 14. Práctica guiada: Depuración asistida por IA
+
+### Escenario de Trabajo
+
+Ha recibido una hoja de cálculo con un listado de facturas emitidas donde los números de identificación están mal estructurados y las fórmulas lanzan el error `#¡VALOR!`.
+
+```
+Fórmula con error en D2: =SI(IZQUIERDA(A2;3)=900; B2*1,21; B2)
+Datos en A2: " 900-FAC "
+
+```
+
+### Paso a paso para la resolución con ChatGPT/Claude
+
+1. **Identificar el origen del fallo:**
+* La celda `A2` contiene espacios ocultos a la izquierda.
+* La función `IZQUIERDA` devuelve el resultado como tipo Texto, mientras que la fórmula intenta compararlo con un número sin comillas (`900`).
+
+
+2. **Redactar la consulta a la Inteligencia Artificial:**
+> *"Hola. Tengo esta fórmula en Excel: `=SI(IZQUIERDA(A2;3)=900; B2*1,21; B2)`. La celda A2 contiene la cadena ' 900-FAC ' con espacios iniciales. La fórmula me devuelve error. Necesito limpiar primero los espacios de A2 y asegurar que la comparación del texto '900' funcione correctamente. Dame la fórmula corregida para Microsoft Excel en español."*
+
+
+3. **Analizar la respuesta de la IA:**
+El asistente devolverá una fórmula corregida similar a esta:
+`=SI(IZQUIERDA(ESPACIOS(A2); 3) = "900"; B2 * 1,21; B2)`
+4. **Validar en la Hoja de Cálculo:**
+* `ESPACIOS(A2)` elimina los espacios al inicio, devolviendo `"900-FAC"`.
+* `IZQUIERDA("900-FAC"; 3)` extrae la cadena `"900"`.
+* Se compara el texto devuelto con la cadena `"900"` (entre comillas), cumpliendo la prueba lógica correctamente.
+
+
+
+---
+
+## 15. Reto profesional
+
+### Contexto Empresarial
+
+Usted trabaja en el departamento de Recursos Humanos de una cadena de supermercados. Recibe una tabla exportada del reloj fichador de los empleados con las lecturas de los turnos nocturnos.
+
+```
++---+----------------------------+------------------+
+|   |             A              |        B         |
++---+----------------------------+------------------+
+| 1 | Empleado                   | Horas Totales    |
++---+----------------------------+------------------+
+| 2 |  GARCIA LOPEZ, MARIA       | 42               |
++---+----------------------------+------------------+
+| 3 |  MARTINEZ CANO, JOSE       | 38               |
++---+----------------------------+------------------+
+
+```
+
+### Instrucciones del Reto
+
+Diseñe la columna `C` (Nombre Formateado) y la columna `D` (Cálculo de Complemento Nocturno):
+
+1. La columna `C` debe mostrar el nombre del empleado normalizado en formato Proper (ejemplo: `"Maria Garcia Lopez"`), reorganizando las cadenas para eliminar la coma y los espacios extras.
+2. La columna `D` debe asignar la retribución del complemento según las horas trabajadas en la columna `B`:
+* Horas $> 40$: `"Complemento Nivel A"`
+* Horas entre $35$ y $40$: `"Complemento Nivel B"`
+* Horas $< 35$: `"Sin Complemento"`
+
+
+3. Redacte el *prompt* exacto que utilizaría en un LLM de IA para construir la fórmula de la columna `C` si no recuerda cómo invertir las cadenas de texto.
+
+---
+
+## 16. Proyecto integrador: Generador Automático de Fichas de Producto
+
+### Objetivo general
+
+Construir una plantilla dinámica en Excel que procese las entradas de un formulario web sin formatear y produzca de manera automática el código SKU final e importe con IVA.
+
+### Datos de entrada (Fila 2)
+
+* **Nombre Producto (A2):** `"  teclado mecanico RGB  "`
+* **Categoría (B2):** `"PERIFERICO"`
+* **Precio Base (C2):** `45`
+* **Tipo de Cliente (D2):** `"Empresa"`
+
+### Requisitos del Proyecto
+
+1. **Limpieza del Nombre:** La columna `E` debe presentar el nombre con la primera letra en mayúscula y sin espacios redundantes.
+2. **Generación de SKU:** La columna `F` generará un código de inventario con las primeras 3 letras de la categoría en mayúsculas, el texto `"-PROD-"` y las últimas 3 letras del precio.
+3. **Cálculo de Precio Final:** La columna `G` aplicará un descuento condicional: si el `Tipo de Cliente` es `"Empresa"`, aplicará un $15\%$ de descuento sobre el `Precio Base`. Si es cualquier otro tipo, mantendrá el precio original.
+4. **Verificación por IA:** El alumno deberá documentar mediante capturas de pantalla o transcripción de texto la interacción con la Inteligencia Artificial utilizada para verificar la validez sintáctica de su solución.
+
+---
+
+## 17. Autoevaluación
+
+### Preguntas de respuesta corta
+
+1. ¿Cuál es la diferencia principal entre el comportamiento de las funciones `CONCAT` y `UNIRCADENAS`?
+2. ¿Por qué es necesario escribir las cadenas de texto entre comillas dentro de las fórmulas lógicas?
+3. ¿Qué resultado devuelve la función `=MAYUSC(ESPACIOS("  excel  "))`?
+
+### Preguntas de desarrollo
+
+1. Explique el orden de ejecución que realiza la función `SI.CONJUNTO` al evaluar múltiples condiciones y por qué es determinante la posición de las pruebas lógicas.
+2. Describa la estructura de instrucciones (*prompt*) requerida para consultar a un asistente de IA una solución sobre fórmulas de Excel sin obtener errores de sintaxis local.
+
+### Preguntas tipo test
+
+**1. ¿Qué valor devuelve la fórmula `=IZQUIERDA("CURSO-2026"; 5)`?**
+
+* a) `2026`
+* b) `CURSO`
+* c) `CURSO-`
+* d) `#¡VALOR!`
+
+**2. Si en la celda A1 tenemos el número 15, ¿cuál será el resultado de `=SI(A1>20; "Alto"; SI(A1>10; "Medio"; "Bajo"))`?**
+
+* a) `Alto`
+* b) `Medio`
+* c) `Bajo`
+* d) `#N/A`
+
+**3. ¿Cuál de las siguientes funciones permite eliminar los espacios innecesarios de una celda?**
+
+* a) `LIMPIAR`
+* b) `RECORTAR`
+* c) `ESPACIOS`
+* d) `SINESPACIOS`
+
+**4. ¿Qué parámetro de la función `UNIRCADENAS` permite omitir las celdas sin contenido dentro de un rango?**
+
+* a) `delimitador`
+* b) `ignorar_vacias`
+* c) `incluir_vacios`
+* d) `limpiar_todo`
+
+---
+
+#### Solucionario del Test
+
+1. **b) CURSO** *(Contabiliza exactamente los primeros 5 caracteres desde el extremo izquierdo).*
+2. **b) Medio** *(La primera condición 15 > 20 es falsa; la segunda prueba 15 > 10 es verdadera, devolviendo "Medio").*
+3. **c) ESPACIOS** *(La función estándar de Excel en español para ajustar espacios entre palabras es ESPACIOS).*
+4. **b) ignorar_vacias** *(Configurar este argumento booleano como VERDADERO omite el procesamiento de celdas nulas).*
+
+---
+
+## 18. Recursos adicionales
+
+### Documentación oficial
+
+* [Soporte Oficial de Microsoft Excel: Función SI](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funci%25C3%25B3n-si-69aed7c9-4e8a-4755-a9bc-aa8bb386cb26)
+* [Soporte Oficial de Microsoft Excel: Función SI.CONJUNTO](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funci%25C3%25B3n-si-conjunto-182330ec-8d7c-4920-8326-3b70747c33c6)
+* [Soporte Oficial de Microsoft Excel: Funciones de texto (referencia)](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funciones-de-texto-referencia-e0ecb5cd-1eeb-4a72-9a56-b112b4e43212)
+
+### Herramientas recomendadas
+
+* **Microsoft Excel 2021 / Microsoft 365:** Entorno operativo recomendado para la compatibilidad total con `SI.CONJUNTO` y `UNIRCADENAS`.
+* **ChatGPT (OpenAI) / Claude (Anthropic):** Modelos lingüísticos de acceso libre para la asistencia en la depuración sintáctica de fórmulas.
+
+### Recursos para ampliar
+
+* **Guía de Fórmulas y Funciones de Microsoft Learn:** Módulos de aprendizaje estructurados para la preparación de certificaciones oficiales de Microsoft Office Specialist (MOS).
+* **Documentación sobre prompts para análisis de datos:** Guías de ingeniería de peticiones aplicadas a entornos de productividad y tratamiento informático de datos.
