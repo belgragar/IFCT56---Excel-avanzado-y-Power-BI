@@ -408,9 +408,9 @@ Construir una plantilla dinámica en Excel que procese las entradas de un formul
 
 ### Documentación oficial
 
-* [Soporte Oficial de Microsoft Excel: Función SI](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funci%25C3%25B3n-si-69aed7c9-4e8a-4755-a9bc-aa8bb386cb26)
-* [Soporte Oficial de Microsoft Excel: Función SI.CONJUNTO](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funci%25C3%25B3n-si-conjunto-182330ec-8d7c-4920-8326-3b70747c33c6)
-* [Soporte Oficial de Microsoft Excel: Funciones de texto (referencia)](https://www.google.com/search?q=https://support.microsoft.com/es-es/office/funciones-de-texto-referencia-e0ecb5cd-1eeb-4a72-9a56-b112b4e43212)
+* [Soporte Oficial de Microsoft Excel: Función SI](https://support.microsoft.com/es-ES/Excel/functions/if-function)
+* [Soporte Oficial de Microsoft Excel: Función SI.CONJUNTO](https://support.microsoft.com/es-es/excel/functions/ifs-function)
+* [Soporte Oficial de Microsoft Excel: Funciones de texto (referencia)](https://support.microsoft.com/es-ES/Excel/text-functions-reference)
 
 ### Herramientas recomendadas
 
