@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día 3: Visualización y Tablas Estructuradas - Excel Avanzado y Power BI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        excel: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-excel-900 via-excel-800 to-excel-700 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <span class="bg-excel-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">IFCT56: Módulo 1 - Sesión 3</span>
+                <h1 class="text-3xl font-bold mt-2 tracking-tight">Visualización y Tablas Estructuradas</h1>
+                <p class="text-excel-100 text-sm mt-1">Automatiza rangos de datos con objetos ListObjects y referencias inteligentes.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex items-center space-x-2 bg-excel-900/50 px-4 py-2 rounded-lg border border-excel-600/30">
+                <i class="fa-solid fa-table-cells text-excel-100 text-xl"></i>
+                <div class="text-right text-xs">
+                    <span class="block text-excel-100 font-medium">Doña Tecla Formación</span>
+                    <span class="text-slate-300">Excel Avanzado & Power BI</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación por Pestañas -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto space-x-2 sm:space-x-8 py-3">
+            <button onclick="switchTab(event, 'resumen')" class="tab-btn flex items-center space-x-2 pb-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap border-excel-600 text-excel-700">
+                <i class="fa-solid fa-house-chimney"></i>
+                <span>1. Resumen</span>
+            </button>
+            <button onclick="switchTab(event, 'contenido')" class="tab-btn flex items-center space-x-2 pb-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap border-transparent text-slate-500 hover:text-slate-700">
+                <i class="fa-solid fa-book-open"></i>
+                <span>2. Contenido Formativo</span>
+            </button>
+            <button onclick="switchTab(event, 'ejercicios')" class="tab-btn flex items-center space-x-2 pb-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap border-transparent text-slate-500 hover:text-slate-700">
+                <i class="fa-solid fa-laptop-code"></i>
+                <span>3. Ejercicios Guiados</span>
+            </button>
+            <button onclick="switchTab(event, 'autoevaluacion')" class="tab-btn flex items-center space-x-2 pb-1 border-b-2 font-medium text-sm transition-colors whitespace-nowrap border-transparent text-slate-500 hover:text-slate-700">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>4. Autoevaluación</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ================= SECCIÓN 1: RESUMEN ================= -->
+        <section id="resumen" class="tab-content active space-y-8 animate-fadeIn">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center">
+                    <span class="bg-excel-100 text-excel-800 p-2 rounded-lg mr-3 text-lg"><i class="fa-solid fa-compass"></i></span>
+                    Introducción y Objetivos de la Sesión
+                </h2>
+                <p class="text-slate-600 leading-relaxed mb-6">
+                    En el entorno profesional actual, trabajar con listas de datos que crecen día a día (ventas, inventarios, fichajes) es la norma. Si usas rangos normales, cada nuevo registro te obliga a corregir fórmulas y estirar gráficos a mano. Las <strong>Tablas Estructuradas de Excel (<code class="text-excel-700 bg-excel-50 px-1 py-0.5 rounded">ListObjects</code>)</strong> resuelven esto desde la raíz, automatizando la expansión de bloques de datos y referencias.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-excel-50/60 rounded-xl p-5 border border-excel-100">
+                        <h3 class="font-bold text-excel-900 mb-3 flex items-center">
+                            <i class="fa-solid fa-bullseye mr-2 text-excel-600"></i> ¿Qué sabrás hacer hoy?
+                        </h3>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex items-start"><i class="fa-solid fa-check text-excel-600 mt-1 mr-2"></i> Convertir rangos convencionales en Tablas Estructuradas dinámicas.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-excel-600 mt-1 mr-2"></i> Dominar referencias estructuradas con corchetes y el operador @.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-excel-600 mt-1 mr-2"></i> Gestionar filas de totales automáticas y estilos avanzados.</li>
+                            <li class="flex items-start"><i class="fa-solid fa-check text-excel-600 mt-1 mr-2"></i> Vincular gráficos que se actualizan solos al incorporar registros.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50/60 rounded-xl p-5 border border-amber-100">
+                        <h3 class="font-bold text-amber-900 mb-3 flex items-center">
+                            <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> Analogía Profesional
+                        </h3>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            Imagina una <strong>estantería fija de madera</strong> frente a una <strong>estantería modular extensible</strong>. La primera requiere taladro y trabajo manual si añades libros. La segunda detecta el nuevo libro y fabrica automáticamente una balda nueva ajustada a su medida exacta. ¡Eso es una Tabla Estructurada!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla Comparativa -->
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-4">Rangos Tradicionales vs. Tablas Estructuradas</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700">
+                                <th class="p-3 font-semibold rounded-l-lg">Característica</th>
+                                <th class="p-3 font-semibold">Rango Tradicional</th>
+                                <th class="p-3 font-semibold rounded-r-lg">Tabla Estructurada (<code class="text-excel-800">ListObject</code>)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-3 font-medium text-slate-800">Referencia en fórmulas</td>
+                                <td class="p-3 text-slate-600">Por coordenadas (<code class="text-red-600">A2:B10</code>)</td>
+                                <td class="p-3 text-emerald-700 font-medium">Por nombre de columna (<code class="text-excel-700">Tbl[Precio]</code>)</td>
+                            </tr>
+                            <tr class="bg-slate-50/50">
+                                <td class="p-3 font-medium text-slate-800">Copiado de fórmulas</td>
+                                <td class="p-3 text-slate-600">Arrastrar manualmente hacia abajo</td>
+                                <td class="p-3 text-emerald-700 font-medium">Relleno automático instantáneo (Columna calculada)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-medium text-slate-800">Ampliación de datos</td>
+                                <td class="p-3 text-slate-600">Requiere ajustar rangos de fórmulas/gráficos</td>
+                                <td class="p-3 text-emerald-700 font-medium">Automática al escribir en la fila inferior</td>
+                            </tr>
+                            <tr class="bg-slate-50/50">
+                                <td class="p-3 font-medium text-slate-800">Fila de resúmenes</td>
+                                <td class="p-3 text-slate-600">Creación manual con funciones sueltas</td>
+                                <td class="p-3 text-emerald-700 font-medium">Nativa, activable con un clic y desplegables</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 2: CONTENIDO FORMATIVO ================= -->
+        <section id="contenido" class="tab-content space-y-8">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-6">
+                <h2 class="text-2xl font-bold text-slate-900 flex items-center">
+                    <span class="bg-excel-100 text-excel-800 p-2 rounded-lg mr-3 text-lg"><i class="fa-solid fa-book"></i></span>
+                    Desarrollo Técnico y Sintaxis
+                </h2>
+
+                <!-- 4.1 Creación -->
+                <div class="border-l-4 border-excel-600 pl-4 py-2 space-y-2">
+                    <h3 class="text-lg font-bold text-slate-900">1. Creación de Tablas Estructuradas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Para transformar cualquier bloque de información en un objeto inteligente: haz clic dentro de los datos, ve a la pestaña <strong>Insertar</strong> y pulsa en <strong>Tabla</strong> (o utiliza el atajo rápido <kbd class="bg-slate-100 px-2 py-1 rounded border border-slate-300 font-mono text-xs font-bold">Ctrl + Q</kbd> / <kbd class="bg-slate-100 px-2 py-1 rounded border border-slate-300 font-mono text-xs font-bold">Ctrl + T</kbd>). Asegúrate de marcar "La tabla tiene encabezados".
+                    </p>
+                    <div class="bg-slate-900 text-emerald-400 font-mono text-xs p-4 rounded-xl overflow-x-auto shadow-inner">
+                        <p class="text-slate-400">// Visualización de la ventana de diálogo flotante</p>
+                        <p class="text-white">+-----------------------------------------------------+;</p>
+                        <p class="text-white">| Crear tabla                                     [X] |</p>
+                        <p class="text-white">+-----------------------------------------------------+;</p>
+                        <p class="text-white">| ¿Dónde están los datos de la tabla?                |</p>
+                        <p class="text-excel-350">| [ =$A$1:$D$12                                   ] |</p>
+                        <p class="text-white">| [X] La tabla tiene encabezados                      |</p>
+                        <p class="text-white">+-----------------------------------------------------+;</p>
+                    </div>
+                </div>
+
+                <!-- 4.2 Referencias Estructuradas -->
+                <div class="border-l-4 border-excel-600 pl-4 py-2 space-y-2">
+                    <h3 class="text-lg font-bold text-slate-900">2. Sintaxis de Referencias Estructuradas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        En lugar de referenciar coordenadas estáticas (<code class="text-slate-700 bg-slate-100 px-1 py-0.5 rounded">C2:C50</code>), se emplean los nombres de los encabezados entre corchetes acompañados opcionalmente por el nombre de la tabla.
+                    </p>
+                    <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-sm space-y-2 font-mono">
+                        <p><span class="text-excel-800 font-bold">=SUMA(Tbl_Ventas[Importe Total])</span> <span class="text-slate-500 font-sans text-xs">-- Suma toda la columna de datos</span></p>
+                        <p><span class="text-excel-800 font-bold">=[@Base Imponible] * 0.21</span> <span class="text-slate-500 font-sans text-xs">-- El símbolo @ aplica el cálculo estrictamente en la fila actual</span></p>
+                    </div>
+                </div>
+
+                <!-- 4.3 Ejemplo Práctico de Código -->
+                <div class="border-l-4 border-excel-600 pl-4 py-2 space-y-2">
+                    <h3 class="text-lg font-bold text-slate-900">3. Ejemplo con Función Condicional (SI)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Evaluación lógica fila a fila dentro de una tabla estructurada para calcular comisiones de forma automatizada:
+                    </p>
+                    <div class="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-xs shadow-inner space-y-1">
+                        <p class="text-emerald-400">=SI([@Estado] = "Entregado"; [@Importe] * 0.05; 0)</p>
+                        <div class="text-slate-400 text-xs font-sans mt-2 space-y-1 pt-2 border-t border-slate-800">
+                            <p><strong>1. <code class="text-excel-300">[@Estado] = "Entregado"</code>:</strong> Comprueba el valor de la celda de la misma fila en la columna Estado.</p>
+                            <p><strong>2. <code class="text-excel-300">[@Importe] * 0.05</code>:</strong> Si es verdadero, calcula el 5% de comisión usando el importe de esa misma fila.</p>
+                            <p><strong>3. <code class="text-excel-300">0</code>:</strong> Si es falso, devuelve valor cero.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerta de Buenas Prácticas -->
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start space-x-3">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-xl mt-0.5"></i>
+                    <div>
+                        <h4 class="font-bold text-amber-900 text-sm">Consejo de Productividad y Buenas Prácticas</h4>
+                        <p class="text-xs text-amber-800 mt-1 leading-relaxed">
+                            Renombra siempre tus tablas recién creadas desde la pestaña superior contextual <strong>Diseño de tabla</strong> (por ejemplo: <code class="bg-white px-1 py-0.5 rounded border border-amber-300 font-mono">Tbl_Ventas2026</code>). Evita dejar los nombres genéricos por defecto como <code class="bg-white px-1 py-0.5 rounded border border-amber-300 font-mono">Tabla1</code>, ya que en proyectos grandes con múltiples hojas de cálculo te impedirá identificar el origen de tus datos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 3: EJERCICIOS GUIADOS ================= -->
+        <section id="ejercicios" class="tab-content space-y-8">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2 flex items-center">
+                    <span class="bg-excel-100 text-excel-800 p-2 rounded-lg mr-3 text-lg"><i class="fa-solid fa-laptop-code"></i></span>
+                    Práctica Guiada: Control de Existencias en Almacén
+                </h2>
+                <p class="text-slate-600 text-sm mb-6">
+                    Sigue este caso práctico paso a paso en tu propia aplicación de hoja de cálculo para afianzar el dominio de las Tablas Estructuradas (<code class="text-excel-700">ListObjects</code>).
+                </p>
+
+                <div class="space-y-4">
+                    <!-- Paso 1 -->
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+                        <h3 class="font-bold text-slate-800 text-sm flex items-center mb-2">
+                            <span class="bg-excel-600 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-xs mr-2">1</span>
+                            Introducción de datos base en celdas
+                        </h3>
+                        <p class="text-xs text-slate-600 mb-3">Copia los siguientes datos en tu hoja de Excel a partir de la celda A1:</p>
+                        <div class="bg-white border border-slate-200 rounded-lg p-3 font-mono text-xs overflow-x-auto">
+                            <table class="w-full text-left">
+                                <tr class="text-slate-500 border-b">
+                                    <th class="p-1">Código</th>
+                                    <th class="p-1">Artículo</th>
+                                    <th class="p-1">Stock</th>
+                                    <th class="p-1">Costo</th>
+                                </tr>
+                                <tr>
+                                    <td class="p-1">A01</td>
+                                    <td class="p-1">Martillos</td>
+                                    <td class="p-1">15</td>
+                                    <td class="p-1">12,50</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1">A02</td>
+                                    <td class="p-1">Alicates</td>
+                                    <td class="p-1">40</td>
+                                    <td class="p-1">8,00</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-1">A03</td>
+                                    <td class="p-1">Destornillador</td>
+                                    <td class="p-1">25</td>
+                                    <td class="p-1">4,50</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2 a 6 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center mb-1">
+                                <span class="bg-excel-600 text-white w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2">2</span>
+                                Conversión a Tabla Estructurada
+                            </h4>
+                            <p class="text-xs text-slate-600">Selecciona cualquier celda del bloque y pulsa <kbd class="bg-slate-100 px-1 py-0.5 rounded font-mono text-[11px]">Ctrl + Q</kbd>. Marca la casilla de encabezados y pulsa Aceptar.</p>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center mb-1">
+                                <span class="bg-excel-600 text-white w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2">3</span>
+                                Nombrado del Objeto
+                            </h4>
+                            <p class="text-xs text-slate-600">Ve a la pestaña superior <strong>Diseño de tabla</strong> y cambia el nombre de la tabla por <code class="text-excel-800 font-mono font-bold">Tbl_Almacen</code>.</p>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center mb-1">
+                                <span class="bg-excel-600 text-white w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2">4</span>
+                                Columna Calculada Automática
+                            </h4>
+                            <p class="text-xs text-slate-600">En la celda E1 escribe <code class="text-slate-800 font-mono">Valor Total</code>. En E2 introduce la fórmula estructurada: <code class="text-excel-800 font-mono">=[@Stock]*[@Costo]</code> y presiona Enter.</p>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-white">
+                            <h4 class="font-bold text-slate-800 text-sm flex items-center mb-1">
+                                <span class="bg-excel-600 text-white w-5 h-5 rounded-full inline-flex items-center justify-center text-xs mr-2">5</span>
+                                Verificación Dinámica
+                            </h4>
+                            <p class="text-xs text-slate-600">Añade un nuevo registro abajo (Ej: <code class="text-slate-700 font-mono">A04 | Brocas | 100 | 1,20</code>). Observa cómo la tabla y sus fórmulas se extienden solas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Pista / Solución -->
+                <div class="mt-6 pt-6 border-t border-slate-200 flex flex-wrap gap-4">
+                    <button onclick="toggleElement('pistaBox')" class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-4 py-2 rounded-xl text-xs font-semibold transition-colors flex items-center">
+                        <i class="fa-solid fa-eye mr-2"></i> Mostrar / Ocultar Pista
+                    </button>
+                    <button onclick="toggleElement('solucionBox')" class="bg-excel-100 hover:bg-excel-200 text-excel-800 px-4 py-2 rounded-xl text-xs font-semibold transition-colors flex items-center">
+                        <i class="fa-solid fa-key mr-2"></i> Ver Comprobación del Reto
+                    </button>
+                </div>
+
+                <!-- Elementos desplegables pista/solucion -->
+                <div id="pistaBox" class="hidden mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900">
+                    <strong>Pista:</strong> Si al escribir debajo de la tabla la nueva fila no adquiere el mismo formato ni calcula la fórmula automáticamente, significa que existía una fila o columna en blanco separando los datos. Asegúrate de que no haya espacios vacíos intermedios.
+                </div>
+
+                <div id="solucionBox" class="hidden mt-4 bg-excel-50 border border-excel-200 rounded-xl p-4 text-xs text-excel-900 space-y-2">
+                    <strong>Comprobación de éxito:</strong> Al añadir las brocas en la fila inferior, la columna <code class="font-mono">Valor Total</code> debe arrojar automáticamente <code class="font-mono">120,00</code> sin que tengas que arrastrar fórmulas manualmente. Si activas la Fila de Totales desde el menú de Diseño, obtendrás la suma global de inventario de forma instantánea.
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN 4: AUTOEVALUACIÓN ================= -->
+        <section id="autoevaluacion" class="tab-content space-y-8">
+            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2 flex items-center">
+                    <span class="bg-excel-100 text-excel-800 p-2 rounded-lg mr-3 text-lg"><i class="fa-solid fa-circle-question"></i></span>
+                    Cuestionario de Autoevaluación
+                </h2>
+                <p class="text-slate-600 text-sm mb-6">Comprueba tus conocimientos adquiridos en la sesión de hoy mediante este test interactivo de corrección inmediata.</p>
+
+                <form id="quizForm" class="space-y-6">
+                    <!-- Pregunta 1 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                        <p class="font-semibold text-slate-800 text-sm">1. ¿Qué combinación de teclas permite transformar rápidamente un rango convencional en Tabla Estructurada en Excel en español?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="a" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">a) <kbd class="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-xs">Ctrl + B</kbd></span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="b" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">b) <kbd class="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-xs">Ctrl + Q</kbd> (o <kbd class="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-xs">Ctrl + T</kbd>)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="c" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">c) <kbd class="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-xs">Alt + F4</kbd></span>
+                            </label>
+                        </div>
+                        <div id="feedback-q1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                        <p class="font-semibold text-slate-800 text-sm">2. ¿Qué indica exactamente el símbolo <code class="text-excel-700 bg-white px-1.5 py-0.5 rounded border border-slate-200">@</code> dentro de una referencia estructurada?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="a" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">a) Que se debe aplicar un correo electrónico automático.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="b" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">b) Que el cálculo se refiere exclusivamente al valor de esa columna en la fila actual.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="c" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">c) Que la celda está bloqueada contra escritura.</span>
+                            </label>
+                        </div>
+                        <div id="feedback-q2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="p-5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-3">
+                        <p class="font-semibold text-slate-800 text-sm">3. ¿Qué sucede con los gráficos vinculados a una Tabla Estructurada al añadir nuevos registros al final?</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="a" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">a) El gráfico se rompe y muestra un error de referencia.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="b" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">b) El gráfico se actualiza de forma automática incluyendo los nuevos datos.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="c" class="text-excel-600 focus:ring-excel-500">
+                                <span class="text-slate-700">c) Es necesario rediseñar el gráfico por completo manualmente cada semana.</span>
+                            </label>
+                        </div>
+                        <div id="feedback-q3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <button type="button" onclick="evaluarQuiz()" class="w-full sm:w-auto bg-excel-600 hover:bg-excel-700 text-white font-medium px-6 py-3 rounded-xl transition-colors shadow-sm text-sm">
+                            <i class="fa-solid fa-check-double mr-2"></i> Corregir Cuestionario
+                        </button>
+                        <div id="quizResult" class="text-sm font-bold text-slate-800"></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <p>Formación Profesional para el Empleo (FPE) • IFCT56: Excel Avanzado y Power BI</p>
+        <p class="mt-1">Doña Tecla Formación © 2026 - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript de Interactividad -->
+    <script>
+        function switchTab(event, tabId) {
+            // Ocultar contenidos
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Desactivar botones
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => {
+                b.classList.remove('border-excel-600', 'text-excel-700');
+                b.classList.add('border-transparent', 'text-slate-500');
+            });
+
+            // Mostrar pestaña seleccionada
+            document.getElementById(tabId).classList.add('active');
+
+            // Activar botón pulsado
+            event.currentTarget.classList.remove('border-transparent', 'text-slate-500');
+            event.currentTarget.classList.add('border-excel-600', 'text-excel-700');
+        }
+
+        function toggleElement(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
+        function evaluarQuiz() {
+            let aciertos = 0;
+            const total = 3;
+
+            // Pregunta 1
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const f1 = document.getElementById('feedback-q1');
+            f1.classList.remove('hidden');
+            if (q1 && q1.value === 'b') {
+                aciertos++;
+                f1.className = 'text-xs mt-2 p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200';
+                f1.innerHTML = '<i class="fa-solid fa-check mr-1"></i> ¡Correcto! Ctrl + Q (o Ctrl + T) es el atajo estándar en Excel.';
+            } else {
+                f1.className = 'text-xs mt-2 p-2 rounded-lg bg-red-50 text-red-800 border border-red-200';
+                f1.innerHTML = '<i class="fa-solid xmark mr-1"></i> Incorrecto. La combinación correcta es Ctrl + Q.';
+            }
+
+            // Pregunta 2
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const f2 = document.getElementById('feedback-q2');
+            f2.classList.remove('hidden');
+            if (q2 && q2.value === 'b') {
+                aciertos++;
+                f2.className = 'text-xs mt-2 p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200';
+                f2.innerHTML = '<i class="fa-solid fa-check mr-1"></i> ¡Correcto! El símbolo @ representa el ámbito de la fila actual.';
+            } else {
+                f2.className = 'text-xs mt-2 p-2 rounded-lg bg-red-50 text-red-800 border border-red-200';
+                f2.innerHTML = '<i class="fa-solid xmark mr-1"></i> Incorrecto. El símbolo @ indica el valor de la celda en la fila actual.';
+            }
+
+            // Pregunta 3
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const f3 = document.getElementById('feedback-q3');
+            f3.classList.remove('hidden');
+            if (q3 && q3.value === 'b') {
+                aciertos++;
+                f3.className = 'text-xs mt-2 p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200';
+                f3.innerHTML = '<i class="fa-solid fa-check mr-1"></i> ¡Correcto! Los gráficos vinculados a ListObjects se actualizan automáticamente.';
+            } else {
+                f3.className = 'text-xs mt-2 p-2 rounded-lg bg-red-50 text-red-800 border border-red-200';
+                f3.innerHTML = '<i class="fa-solid xmark mr-1"></i> Incorrecto. Las tablas estructuradas actualizan los gráficos de manera automática.';
+            }
+
+            // Resultado final
+            const res = document.getElementById('quizResult');
+            res.textContent = `Puntuación final: ${aciertos} de ${total} aciertos.`;
+        }
+    </script>
+</body>
+</html>
